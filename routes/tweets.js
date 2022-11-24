@@ -1,4 +1,7 @@
-const { router } = require("../app");
+var express = require('express');
+var router = express.Router();
+const Tweet = require ("../models/tweets")
+
 
 router.post('/new', (req, res)=> {
     const newTweet = new Tweet ({
@@ -19,3 +22,5 @@ router.get('/', (req, res) => {
         res.json({result: true, data: data});
     });
 });
+
+module.exports = router;
