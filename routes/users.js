@@ -3,7 +3,7 @@ var router = express.Router();
 const uid2 = require('uid2');
 const bcrypt = require('bcrypt');
 
-require('../models/connection');
+
 const User = require('../models/users');
 const { checkBody } = require('../modules/checkBody');
 const token = uid2(32);
@@ -50,3 +50,5 @@ router.post('/signin', (req, res) => {
     }
   });
 });
+
+module.exports = router;
