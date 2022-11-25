@@ -3,7 +3,6 @@ var router = express.Router();
 const uid2 = require('uid2');
 const bcrypt = require('bcrypt');
 
-require('../models/connection');
 const User = require('../models/users');
 const { checkBody } = require('../modules/checkBody');
 const token = uid2(32);
@@ -13,8 +12,6 @@ router.post('/signup', (req, res) => {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   }
-
-
   // Check if the user has not already been registered
   User.findOne({ username: req.body.username }).then(data => {
     const hash = bcrypt.hashSync(req.body.password, 10);
@@ -40,7 +37,6 @@ router.post('/signin', (req, res) => {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   }
-
   User.findOne({ username: req.body.username })
   .then(data => {
     if (data && bcrypt.compareSync(req.body.password, data.password)) {
@@ -50,3 +46,5 @@ router.post('/signin', (req, res) => {
     }
   });
 });
+
+module.exports = router;

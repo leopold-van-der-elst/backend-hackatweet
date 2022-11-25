@@ -1,3 +1,6 @@
+var express = require('express');
+var router = express.Router();
+
 router.get('/:hashtag', (req, res) => {
     Tweet.findOne({ hashtag: req.params.hashtag }).then(data => {
       if (data) {
@@ -7,4 +10,6 @@ router.get('/:hashtag', (req, res) => {
       }
     });
   });
+
+  module.exports = router;
   
